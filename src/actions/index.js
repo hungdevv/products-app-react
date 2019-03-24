@@ -1,5 +1,6 @@
 import * as types from './../constants/ActionTypes';
 import apiCall from './../utils/apiCall';
+import callApi from './../utils/apiCall';
 
 export const actFetchProducts = (products) => {
     return{
@@ -9,9 +10,24 @@ export const actFetchProducts = (products) => {
 }
 
 export const actFetchProductsRequest = () => {
-    return (dispatch) => {
+    return dispatch => {
         return apiCall('GET', 'products', null).then(res => {
             dispatch(actFetchProducts(res.data));
+        })
+    }
+}
+
+export const actDeleteProducts =  (id) => {
+    return{
+        type: types.DELETE_PRODUCTS,
+        id
+    }
+}
+
+export const actDeleteProductsRequest = (id) => {
+    return dispatch => {
+        return callApi('DELETE', `products/${id}`, null).then(res => {
+            dispatch(actDeleteProducts(id))
         })
     }
 }
