@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import apiCall from './../../utils/apiCall';
+import { actAddProductsRequest } from "../../actions";
+import {connect} from 'react-redux';
 
-export default class ProductActionPage extends Component {
+class ProductActionPage extends Component {
   constructor(props){
     super(props);
     this.state = {
@@ -39,6 +41,12 @@ export default class ProductActionPage extends Component {
   onSave = (e) => {
     var {id,name, price, status} = this.state;
     var { history } = this.props;
+    var product = {
+      id,
+      name,
+      price,
+      status
+    }
     e.preventDefault();
     if(id) {
       apiCall("PUT", `products/${id}`, {
@@ -49,13 +57,8 @@ export default class ProductActionPage extends Component {
         history.push("/product/list");
       })
     }else{
-      apiCall('POST', 'products',{
-        name,
-        price,
-        status,
-      }).then(res => {
-        history.goBack();
-      })
+      this.props.onAdd(product);
+      history.goBack();
     }
   }
   render() {
@@ -106,3 +109,12 @@ export default class ProductActionPage extends Component {
     );
   }
 }
+
+const mapDispatchToProps = (dispatch, props) => {
+  return{
+    onAdd: (product) => {
+      dispatch(actAddProductsRequest(product))
+    }
+  }
+}
+export default connect(null, mapDispatchToProps)(ProductActionPage)
