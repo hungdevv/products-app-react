@@ -60,13 +60,10 @@ export default class Menu extends Component {
   render() {
     return (
         <nav className="navbar navbar-expand-md bg-dark navbar-dark mb-2">
-        {/* Brand */}
-        <a className="navbar-brand" >Navbar</a>
-        {/* Toggler/collapsibe Button */}
+        <h1 className="navbar-brand" >NNH</h1>
         <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
           <span className="navbar-toggler-icon" />
         </button>
-        {/* Navbar links */}
         <div className="collapse navbar-collapse" id="collapsibleNavbar">
           <ul className="navbar-nav">
             {this.showMenus(menus)}
