@@ -76,3 +76,18 @@ export const actEditProductsRequest = id => {
     );
   };
 };
+
+export const actSortProducts = products => {
+  return{
+    type: types.SORT_PRODUCTS,
+    products
+  }
+}
+
+export const actSortProductsRequest = () => {
+  return dispatch => {
+    return apiCall("GET", "products", null).then(res => {
+      dispatch(actSortProducts(res.data));
+    });
+  };
+};

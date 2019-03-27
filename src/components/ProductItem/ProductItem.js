@@ -9,7 +9,7 @@ export default class ProductItem extends Component {
   render() {
   
     var { product, index } = this.props;
-    var statusName = product.status ? "Con hang" : "full";
+    var statusName = product.status ? "Còn hàng" : "Hết";
     var statusClass = product.status ? "success" : "danger";
     return (
       <tr>

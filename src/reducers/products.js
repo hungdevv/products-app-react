@@ -22,6 +22,9 @@ const products = (state = initialState, action) => {
             index = func.findIndex(state, product.id);
             state[index] = product;
             return [...state];
+        case types.SORT_PRODUCTS:
+             state = action.products.filter(product => product.status === true);
+             return [...state];
         default: return [...state];
     }
 }
