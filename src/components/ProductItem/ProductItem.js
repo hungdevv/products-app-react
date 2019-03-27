@@ -23,14 +23,14 @@ export default class ProductItem extends Component {
         <td>
           <div className="btn-group">
             <Link className="btn btn-warning" to={`${product.id}/edit`}>
-              Sửa
+              Sửa <i class="fas fa-edit"></i>
             </Link>
             <button 
             className="btn btn-danger" 
             type="button"
             onClick={() => this.onDelete(product.id)} 
             >
-              Xóa
+              Xóa <i class="fas fa-trash-alt"></i>
             </button>
           </div>
         </td>
